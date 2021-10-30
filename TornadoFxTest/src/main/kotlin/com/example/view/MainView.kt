@@ -4,10 +4,13 @@ import com.example.Styles
 import javafx.beans.property.SimpleStringProperty
 import javafx.geometry.Pos
 import tornadofx.*
+import kotlin.random.Random
 
 class MainView : View("Hello TornadoFX") {
 
-    val labelText = SimpleStringProperty(title)
+    private val labelText = SimpleStringProperty(title)
+
+    private val names = arrayOf("Victoria", "George", "Edward", "Elizabeth", "William", "Henry")
 
     override val root = vbox {
         alignment = Pos.CENTER
@@ -21,9 +24,9 @@ class MainView : View("Hello TornadoFX") {
         label("hello")
 
         button("click me") {
-//            this.text = "Click Me"
             action {
-                labelText.value = "Hey there"
+                val index = Random.nextInt(0, names.size)
+                labelText.value = names[index]
             }
         }
     }
