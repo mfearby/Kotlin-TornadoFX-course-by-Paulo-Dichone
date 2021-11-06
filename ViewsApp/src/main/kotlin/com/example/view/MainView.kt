@@ -33,6 +33,8 @@ class MainView : View("Hello TornadoFX") {
 //            label("centre")
 //        }
 
+        
+
         center = centreView.root
 
         left {
