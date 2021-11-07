@@ -14,10 +14,20 @@ class MainView : View("Hello TornadoFX") {
 
     override val root = hbox {
 
-        listview<String> {
-            items.addAll("One", "Two", "Three")
-        }
+//        listview<String> {
+//            items.addAll("One", "Two", "Three")
+//        }
 
-        listview(names)
+        listview(names) {
+            cellFormat {
+                text = it
+                if (it.contains("Bach")) {
+                    textFill = c("red", 0.8)
+                    style {
+                        fontSize = 20.px
+                    }
+                }
+            }
+        }
     }
 }
