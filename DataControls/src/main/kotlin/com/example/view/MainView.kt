@@ -1,6 +1,7 @@
 package com.example.view
 
 import com.example.Styles
+import javafx.collections.FXCollections
 import tornadofx.*
 
 class MainView : View("Hello TornadoFX") {
@@ -12,13 +13,20 @@ class MainView : View("Hello TornadoFX") {
         "Beethoven"
     ).asObservable()
 
-    override val root = hbox {
+    private val mutableNames = FXCollections.observableArrayList<String>(
+        "Mozart",
+        "Bach",
+        "Handel",
+        "Beethoven"
+    )
+
+    override val root = vbox {
 
 //        listview<String> {
 //            items.addAll("One", "Two", "Three")
 //        }
 
-        listview(names) {
+        listview(mutableNames) {
             cellFormat {
                 text = it
                 if (it.contains("Bach")) {
@@ -27,6 +35,13 @@ class MainView : View("Hello TornadoFX") {
                         fontSize = 20.px
                     }
                 }
+            }
+        }
+
+        button {
+            text = "Add Composer"
+            action {
+                mutableNames.add("Purcell")
             }
         }
     }
