@@ -7,11 +7,14 @@ import tornadofx.Controller
 class MainController: Controller() {
 
     val mutableNames: ObservableList<String> = FXCollections.observableArrayList(
-        "Mozart",
-        "Bach",
-        "Handel",
-        "Beethoven"
+        "Wolfgang Amadeus Mozart",
+        "Johann Sebastian Bach",
+        "George Friedrich Handel",
+        "Ludwig van Beethoven"
     )
 
+    fun addName(fullName: String) {
+        mutableNames.add(fullName)
+    }
 
 }

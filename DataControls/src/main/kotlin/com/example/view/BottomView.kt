@@ -1,6 +1,7 @@
 package com.example.view
 
 import com.example.controller.MainController
+import javafx.beans.property.SimpleStringProperty
 import tornadofx.*
 
 class BottomView : View("My View") {
@@ -9,12 +10,15 @@ class BottomView : View("My View") {
 
     override val root = form {
 
+        val firstName = SimpleStringProperty()
+        val lastName = SimpleStringProperty()
+
         fieldset {
             field("First Name") {
-                textfield("")
+                textfield(firstName)
             }
             field("Last Name") {
-                textfield("")
+                textfield(lastName)
             }
         }
 
@@ -22,7 +26,17 @@ class BottomView : View("My View") {
             button {
                 text = "Add Composer"
                 action {
-                    mainController.mutableNames.add("Purcell")
+
+                    if (firstName.value.isNullOrEmpty() || lastName.value.isNullOrEmpty()) {
+                        // do nothing
+                    } else {
+                        val fullName = firstName.value + " " + lastName.value
+                        mainController.addName(fullName)
+
+                        firstName.value = ""
+                        lastName.value = ""
+                    }
+
                 }
             }
 
