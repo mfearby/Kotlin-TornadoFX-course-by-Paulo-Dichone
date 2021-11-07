@@ -1,48 +1,17 @@
 package com.example.view
 
-import com.example.Styles
-import javafx.collections.FXCollections
+import com.example.controller.MainController
 import tornadofx.*
 
 class MainView : View("Hello TornadoFX") {
 
-    private val names =  listOf(
-        "Mozart",
-        "Bach",
-        "Handel",
-        "Beethoven"
-    ).asObservable()
+    val mainController: MainController by inject()
+    val bottomView: BottomView by inject()
+    val topView: TopView by inject()
 
-    private val mutableNames = FXCollections.observableArrayList<String>(
-        "Mozart",
-        "Bach",
-        "Handel",
-        "Beethoven"
-    )
-
-    override val root = vbox {
-
-//        listview<String> {
-//            items.addAll("One", "Two", "Three")
-//        }
-
-        listview(mutableNames) {
-            cellFormat {
-                text = it
-                if (it.contains("Bach")) {
-                    textFill = c("red", 0.8)
-                    style {
-                        fontSize = 20.px
-                    }
-                }
-            }
-        }
-
-        button {
-            text = "Add Composer"
-            action {
-                mutableNames.add("Purcell")
-            }
-        }
+    override val root = borderpane() {
+        top = topView.root
+        bottom = bottomView.root
     }
+
 }
