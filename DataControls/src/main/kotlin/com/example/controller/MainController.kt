@@ -26,4 +26,8 @@ class MainController: Controller() {
         mutableNames.add(fullName)
     }
 
+    fun addNewStudent(student: Student) {
+        students.add(student)
+    }
+
 }

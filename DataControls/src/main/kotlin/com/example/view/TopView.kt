@@ -8,6 +8,7 @@ class TopView : View("My View") {
     val mainController: MainController by inject()
 
     override val root = listview(mainController.mutableNames) {
+        prefHeight = 245.0
         cellFormat {
             text = it
             if (it.contains("Bach")) {
