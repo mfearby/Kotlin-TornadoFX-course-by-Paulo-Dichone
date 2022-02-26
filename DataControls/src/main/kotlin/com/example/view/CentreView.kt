@@ -6,14 +6,19 @@ import tornadofx.*
 
 class CentreView : View("My View") {
 
-    val mainController: MainController by inject()
+    private val mainController: MainController by inject()
 
     override val root = tableview<Student> {
         items = mainController.students
 
-        readonlyColumn("ID", Student::id)
-        readonlyColumn("First Name", Student::firstName)
-        readonlyColumn("Last Name", Student::lastName)
+        column("ID", Student::idProperty)
+        column("First Name", Student::firstNameProperty)
+        column("Last Name", Student::lastNameProperty)
         readonlyColumn("Age", Student::age)
+
+//        readonlyColumn("ID", Student::id)
+//        readonlyColumn("First Name", Student::firstName)
+//        readonlyColumn("Last Name", Student::lastName)
+//        readonlyColumn("Age", Student::age)
     }
 }
