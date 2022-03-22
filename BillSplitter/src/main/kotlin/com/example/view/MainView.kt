@@ -2,18 +2,23 @@ package com.example.view
 
 import com.example.Styles
 import com.example.controller.MainController
+import javafx.beans.binding.Bindings
+import javafx.beans.property.SimpleDoubleProperty
+import javafx.beans.property.SimpleIntegerProperty
 import javafx.geometry.Orientation
 import javafx.geometry.Pos
+import javafx.scene.control.ButtonType
 import javafx.scene.control.ComboBox
 import javafx.scene.control.Slider
 import javafx.scene.control.TextField
+import javafx.scene.input.KeyCode
 import tornadofx.*
 
 class MainView : View("Hello TornadoFX") {
 
-    val mainController: MainController by inject()
-    var splitCombo: ComboBox<Int> by singleAssign()
-    var slider: Slider by singleAssign()
+    private val mainController: MainController by inject()
+    private var splitCombo: ComboBox<Int> by singleAssign()
+    private var slider: Slider by singleAssign()
     var billAmount: TextField by singleAssign()
 
     override val root = vbox {
@@ -21,8 +26,11 @@ class MainView : View("Hello TornadoFX") {
         label("Total per person") {
             addClass(Styles.heading)
         }
-        label("123") {
+        label() {
             addClass(Styles.heading)
+            textProperty().bind(
+                Bindings.concat("$", Bindings.format("%.2f", mainController.totalPerPerson))
+            )
         }
 
         form {
@@ -30,27 +38,58 @@ class MainView : View("Hello TornadoFX") {
                 field("Bill Amount") {
                     maxWidth = 190.0
                     billAmount = textfield()
+                    billAmount.filterInput {
+                        it.controlNewText.isDouble() || it.controlNewText.isInt()
+                    }
+                    billAmount.setOnKeyPressed {
+                        if (it.code == KeyCode.ENTER) {
+                            validateField()
+                        }
+                    }
                 }
                 field("Split by") {
                     splitCombo = combobox(values = (1..10).toList()) {
                         prefWidth = 135.0
                         value = 1
                     }
+                    splitCombo.valueProperty().onChange {
+                        validateField()
+                    }
                 }
                 field {
                     hbox(spacing = 23.0) {
                         label("Total Tip")
-                        label("100")
+                        label().textProperty().bind(
+                            Bindings.concat("$", Bindings.format("%.2f", mainController.tipPercentageAmount))
+                        )
                     }
                 }
                 field {
                     hbox(spacing = 5.0) {
                         label("Tip %")
-                        // slider
+                        slider = slider(min = 0, max = 100, orientation = Orientation.HORIZONTAL)
+                        slider.valueProperty().onChange {
+                            validateField()
+                        }
+                        label().textProperty().bind(
+                            Bindings.concat(mainController.sliderPercentageAmount, "%")
+                        )
                     }
                 }
             }
         }
 
+    }
+
+    private fun validateField() {
+        if (billAmount.text.toString().isEmpty()) {
+            error(header = "Error", content = "Empty field not allowed", buttons = arrayOf(ButtonType.OK))
+        } else {
+            mainController.calculate(
+                SimpleDoubleProperty(billAmount.text.toDouble()),
+                SimpleIntegerProperty(splitCombo.value),
+                SimpleIntegerProperty(slider.value.toInt())
+            )
+        }
     }
 }
