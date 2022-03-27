@@ -29,6 +29,15 @@ class Student(
         get() = Period.between(birthday, LocalDate.now()).years
 }
 
+class StudentModel: ItemViewModel<Student>() {
+
+    val id = bind { item?.idProperty }
+    val firstName = bind { item?.firstNameProperty }
+    val lastName = bind { item?.lastNameProperty }
+    val birthday = bind { item?.birthdayProperty }
+
+
+}
 
 //class Student(
 //    val id: Int,
