@@ -20,25 +20,44 @@ class StudentEditor : View("My View") {
     override val root = form {
         fieldset {
             field("First Name") {
-                textfield(model.firstName) {  }
+                textfield(model.firstName).required()
             }
             field("Last Name") {
-                textfield(model.lastName) {  }
-            }
-            field("D.O.B.") {
-                datepicker(model.birthday) {  }
-            }
-            button("Save") {
-                action {
-                    val student = Student(
-                        id = 1,
-                        firstName = model.firstName.value,
-                        lastName = model.lastName.value,
-                        birthday = model.birthday.value
-                    )
-                    mainController.addNewStudent(student)
+                textfield(model.lastName) {
+                    required()
+                    validator {
+                        if (it.isNullOrBlank()) error("Type something, dude!") else null
+                    }
                 }
             }
+            field("D.O.B.") {
+                datepicker(model.birthday).required()
+            }
+
+            hbox {
+                button("Save") {
+                    enableWhen(model.dirty)
+                    action {
+                        model.commit {
+                            val student = Student(
+                                id = 1,
+                                firstName = model.firstName.value,
+                                lastName = model.lastName.value,
+                                birthday = model.birthday.value
+                            )
+                            mainController.addNewStudent(student)
+                        }
+                    }
+                }
+                button("Reset") {
+                    enableWhen(model.dirty)
+                    action {
+                        model.rollback()
+                    }
+                }
+            }
+
+
         }
     }
 }
