@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9bdd46e-cdab-4dde-87d0-2c9c74c1bde2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BillSplitter/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BillSplitter/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+    <list default="true" id="a9bdd46e-cdab-4dde-87d0-2c9c74c1bde2" name="Changes" comment="Styles app is actually running now. God knows what was wrong before (deleted .gradle cache and re-created project, seems OK now, fingers crossed)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/example/MyApp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/example/MyApp.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/example/Styles.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/example/Styles.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/example/view/MainView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/example/view/MainView.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +57,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RunApp" type="TORNADOFX_RUNCONFIGURATION" run-type="App" live-views="false" live-stylesheets="false" dump-stylesheets="false">
+    <configuration name="RunApp" type="TORNADOFX_RUNCONFIGURATION" run-type="App" live-views="true" live-stylesheets="false" dump-stylesheets="false">
       <option name="MAIN_CLASS_NAME" value="com.example.MyApp" />
       <module name="tornadofx-gradle-project-kts.main" />
       <method v="2">
@@ -79,6 +79,14 @@
       <option name="presentableId" value="Default" />
       <updated>1649985868996</updated>
     </task>
+    <task id="LOCAL-00001" summary="Styles app is actually running now. God knows what was wrong before (deleted .gradle cache and re-created project, seems OK now, fingers crossed)">
+      <created>1649986799161</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1649986799161</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -91,5 +99,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Styles app is actually running now. God knows what was wrong before (deleted .gradle cache and re-created project, seems OK now, fingers crossed)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Styles app is actually running now. God knows what was wrong before (deleted .gradle cache and re-created project, seems OK now, fingers crossed)" />
   </component>
 </project>
