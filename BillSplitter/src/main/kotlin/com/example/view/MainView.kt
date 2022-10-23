@@ -22,10 +22,13 @@ class MainView : View("Hello TornadoFX") {
     var billAmount: TextField by singleAssign()
 
     override val root = vbox {
+        addClass(Styles.vBox)
         alignment = Pos.TOP_CENTER
+
         label("Total per person") {
             addClass(Styles.heading)
         }
+
         label() {
             addClass(Styles.heading)
             textProperty().bind(

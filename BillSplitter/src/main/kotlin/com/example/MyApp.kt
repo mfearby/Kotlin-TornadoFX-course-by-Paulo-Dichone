@@ -2,9 +2,16 @@ package com.example
 
 import com.example.view.MainView
 import javafx.stage.Stage
-import tornadofx.App
+import tornadofx.*
 
 class MyApp: App(MainView::class, Styles::class) {
+
+    // useful if "Live Views" is ticked in Dev Options under configurations
+    init {
+        reloadStylesheetsOnFocus()
+        reloadViewsOnFocus()
+    }
+
     override fun start(stage: Stage) {
         with(stage) {
             width = 250.0
